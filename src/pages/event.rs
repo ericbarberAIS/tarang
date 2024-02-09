@@ -52,7 +52,7 @@ impl Component for Event {
                         </article>
                     </div>
                     <div class="tile">
-                        <div class="tile is-parent is-3">
+                        <div class="tile is-parent is-4">
                             <article class="tile is-child notification">
                                 <p class="title">{ "Details" }</p>
                                     <div class="content">
@@ -79,7 +79,7 @@ impl Component for Event {
                     </div>
                         <div class="tile is-ancestor">
                             <div class="tile is-parent">
-                                <article class="tile is-child notification is-info">
+                                <article class="tile is-child notification is-white">
                                     <div class="content">
                                         // <!-- Use "title" for main heading and "subtitle" for subheadings -->
                                         <p class="title has-text-weight-bold">{"Event Announcement"}</p>
