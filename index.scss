@@ -1,0 +1,57 @@
+.container {
+  max-width: 1536; // Maximum width for a 3K screen size
+  margin: 0 auto; // This centers the container
+}
+
+.hero {
+  &.has-background {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &-background {
+    position: absolute;
+    object-fit: cover;
+    object-position: bottom;
+    width: 100%;
+    height: 100%;
+
+    &.is-transparent {
+      opacity: 0.3;
+    }
+  }
+}
+
+.burger {
+  background-color: transparent;
+  border: none;
+}
+
+.navbar-brand {
+  align-items: center;
+}
+
+.contact-heading {
+    font-weight: bold;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Hide parts of the image that exceed the container size */
+}
+
+// .carousel-images {
+//     width: 600px; /* Set a specific width for the carousel */
+//     height: 400px; /* Set a specific height for the carousel */
+//     display: flex; /* Use flex to center images */
+//     justify-content: center; /* Center images horizontally */
+//     align-items: center; /* Center images vertically */
+// }
+
+.carousel-images img {
+    max-width: 100%; /* Maximum width of image is 100% of its container */
+    max-height: 100%; /* Maximum height of image is 100% of its container */
+    object-fit: contain; /* This will make sure images maintain their aspect ratio */
+}

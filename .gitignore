@@ -1,3 +1,11 @@
+# Website specific data
+/data
+/dist
+
+# Rust trunk
+/target
+Cargo.lock
+
 # Logs
 logs
 *.log
