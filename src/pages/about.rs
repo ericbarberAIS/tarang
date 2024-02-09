@@ -19,8 +19,8 @@ impl Component for AboutUs {
                 </div>
 
                 <div class="tile is-child">
-                    <figure class="image is-3by1">
-                        <img alt="A random image for the input term 'sound'." src="https://source.unsplash.com/random/1200x400/?sound" />
+                    <figure class="image">
+                        <img alt="Performance from Tarang." src="/static/events/imports/jpg/image_2.jpg" />
                     </figure>
                 </div>
 
@@ -37,11 +37,6 @@ impl Component for AboutUs {
                         </div>
                     </div>
                 </div>
-                // <div class="tile is-child">
-                //     <figure class="image is-3by1">
-                //         <img alt="A random image for the input term 'sound'." src="https://source.unsplash.com/random/1200x400/?sound" />
-                //     </figure>
-                // </div>
             </div>
         }
     }
