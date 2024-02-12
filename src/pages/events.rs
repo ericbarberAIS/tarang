@@ -3,7 +3,7 @@ use chrono::serde::ts_seconds;
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use serde_json::to_string;
-use web_sys::console;
+use web_sys::{console, window};
 use yew::prelude::*;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
@@ -12,6 +12,7 @@ struct EventListingElement {
     hero_image_url: String,
     #[serde(with = "ts_seconds")]
     time: DateTime<Utc>,
+    id: u32,
 }
 
 #[derive(Properties, PartialEq)]
@@ -23,8 +24,22 @@ struct EventListingProps {
 fn event_component(props: &EventListingProps) -> Html {
     let event = &props.event;
 
+    // Create an `onclick` callback that navigates to the event page
+    let handle_click = {
+        let event_id = event.id;
+        Callback::from(move |_| {
+            if let Some(window) = window() {
+                let url = format!("/events/{}", event_id);
+                window
+                    .location()
+                    .set_href(&url)
+                    .expect("failed to redirect");
+            }
+        })
+    };
+
     html! {
-        <div class="box">
+        <div class="box" onclick={handle_click}>
             // Display the hero image if the URL is not empty
             if !event.hero_image_url.is_empty() {
                 <figure class="image">
@@ -34,15 +49,9 @@ fn event_component(props: &EventListingProps) -> Html {
             <article class="media">
                 <div class="media-content">
                     <div class="content">
-                        <p>
+                        <h2>
                             <strong>{ &event.title }</strong>
-                            // <br />
-                            // { format!("{} at {}", &event.date.format("%B %e, %Y"), &event.time) }
-                            // <br />
-                            // { &event.location }
-                            // <br />
-                            // { &event.description }
-                        </p>
+                        </h2>
                     </div>
                 </div>
             </article>

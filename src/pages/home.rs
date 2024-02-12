@@ -11,35 +11,43 @@ impl Component for Home {
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
-            <div class="tile is-ancestor is-vertical">
-                <div class="tile is-child hero">
-                    <div class="hero-body container pb-0">
-                        <h1 class="title is-1">{ "Tarang" }</h1>
-                        <h2 class="subtitle">{"Tarang welcomes all without regard to racial, ethnic, regional, religious, political, or socio- economic background and its mission seeks:
+                    <div class="tile is-ancestor is-vertical">
+                        <div class="tile is-child hero">
+                            <div class="hero-body container pb-0">
+                                <h1 class="title is-1">{ "Tarang" }</h1>
+                        <div class="content box">
+                            <p class="subtitle">{"Tarang welcomes all without regard to racial, ethnic, regional, religious, political, or socio-economic background. Its mission seeks:"}</p>
+                            <ul>
+                                <li>{"To make a positive difference in the community by hosting informative cultural programs, promoting local talents, and supporting local charities."}</li>
+                                <li>{"To foster community spirit by creating a place for like-minded cultural enthusiasts to come together."}</li>
+                                <li>{"To promote awareness and understanding of the Indian subcontinent cultural sphere or the Indic world."}</li>
+                            </ul>
+                        </div>
+        //<h2 class="subtitle">{"Tarang welcomes all without regard to racial, ethnic, regional, religious, political, or socio- economic background and its mission seeks:
+        //
+        // To make a positive difference in the community by hosting informative cultural programs,
+        // promoting local talents, and supporting local charities
+        // To foster community spirit by creating a place for likeminded cultural enthusiasts to come
+        // together
+        // To promote awareness and understanding of the Indian subcontinent cultural sphere or the Indic
+        // world"}</h2
+                            </div>
+                        </div>
 
-To make a positive difference in the community by hosting informative cultural programs,
-promoting local talents, and supporting local charities
-To foster community spirit by creating a place for likeminded cultural enthusiasts to come
-together
-To promote awareness and understanding of the Indian subcontinent cultural sphere or the Indic
-world"}</h2>
+                        <div class="tile is-child">
+                            <figure class="image is-3by1">
+                                <img
+                                    alt="Performance from Tarang."
+                                    src="/static/home/img/hero_image.jpg"
+                                />
+                            </figure>
+                        </div>
+
+                        <div class="tile is-parent container">
+                            { self.view_info_tiles() }
+                        </div>
                     </div>
-                </div>
-
-                <div class="tile is-child">
-                    <figure class="image is-3by1">
-                        <img
-                            alt="Performance from Tarang."
-                            src="/static/events/imports/jpg/image_4.jpg"
-                        />
-                    </figure>
-                </div>
-
-                <div class="tile is-parent container">
-                    { self.view_info_tiles() }
-                </div>
-            </div>
-        }
+                }
     }
 }
 impl Home {

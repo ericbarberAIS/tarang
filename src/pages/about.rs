@@ -20,7 +20,7 @@ impl Component for AboutUs {
 
                 <div class="tile is-child">
                     <figure class="image">
-                        <img alt="Performance from Tarang." src="/static/events/imports/jpg/image_2.jpg" />
+                        <img alt="Performance from Tarang." src="/static/about/img/hero_image.jpg" />
                     </figure>
                 </div>
 
