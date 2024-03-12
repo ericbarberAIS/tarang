@@ -48,7 +48,7 @@ impl Component for Event {
                 <div class="tile is-ancestor is-vertical">
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-light">
-                            <p class="title">{"NVBA Celebrates Kobi Pronam"}</p>
+                            <p class="title">{"Tagore and The Sufi Poets: A Journey in Time"}</p>
                         </article>
                     </div>
                     <div class="tile">
@@ -56,8 +56,6 @@ impl Component for Event {
                             <article class="tile is-child notification">
                                 <p class="title">{ "Details" }</p>
                                     <div class="content">
-                                        <p class="subtitle has-text-weight-semibold">{"NVBA Celebrates Kobi Pronam"}</p>
-                                        <p class="subtitle has-text-weight-semibold">{"Tarang DC Presents:"}</p>
                                         <p>{"Date: June l0th, 2023"}</p>
                                         <p>{"Time: 7-10 PM (Free Event)"}</p>
                                         // <!-- Make the address a link - can link to a map or other contact info -->
