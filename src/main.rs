@@ -1,8 +1,6 @@
 mod router;
 
 mod components;
-mod content;
-mod generator;
 mod pages;
 
 use crate::components::app::App;
