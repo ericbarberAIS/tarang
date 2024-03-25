@@ -24,14 +24,14 @@ pub fn event(props: &Props) -> Html {
         <div class="section container">
             <div class="tile is-ancestor is-vertical">
                 <div class="tile is-parent">
-                    <article class="tile is-child notification is-light">
-                        <p class="title">{"Tagore and The Sufi Poets: A Journey in Time"}</p>
+                    <article class="tile is-child">
+                        <p class="title has-text-primary">{"Tagore and The Sufi Poets: A Journey in Time"}</p>
                     </article>
                 </div>
                 <div class="tile">
                     <div class="tile is-parent is-4">
                         <article class="tile is-child notification">
-                            <p class="title">{ "Details" }</p>
+                            <p class="title has-text-info">{ "Details" }</p>
                                 <div class="content">
                                     <p>{"Date: June l0th, 2023"}</p>
                                     <p>{"Time: 7-10 PM (Free Event)"}</p>
@@ -57,7 +57,7 @@ pub fn event(props: &Props) -> Html {
                             <article class="tile is-child notification is-white">
                                 <div class="content">
                                     // <!-- Use "title" for main heading and "subtitle" for subheadings -->
-                                    <p class="title has-text-weight-bold">{"Event Announcement"}</p>
+                                    <p class="title has-text-weight-bold has-text-info">{"Event Announcement"}</p>
 
                                     // <!-- Event Announcement Section -->
                                     <div class="content">

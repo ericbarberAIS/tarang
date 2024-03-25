@@ -14,7 +14,7 @@ impl Component for AboutUs {
             <div class="tile is-ancestor is-vertical">
                 <div class="tile is-child hero">
                     <div class="hero-body container pb-0">
-                        <h1 class="title is-1">{ "About Us" }</h1>
+                        <h1 class="title is-1 has-text-primary">{ "About Us" }</h1>
                     </div>
                 </div>
 
@@ -28,15 +28,18 @@ impl Component for AboutUs {
                     <div class="hero-body container box">
 
                          <div id="about-us" class="hero-body">
-                            <p>{"Welcome to Tarang, a dynamic and inclusive community dedicated to celebrating the rich cultural heritage of Eastern India. Our mission at Tarang, founded in 2024, is to unite people of Eastern Indian descent and enthusiasts alike, fostering a sense of community and connection through the enchanting realms of music and tradition."}</p><br/>
-                            <p>{"At Tarang, we recognize the vibrant tapestry of Eastern Indian culture, characterized by its diverse languages, customs, and art forms. Central to our ethos is the captivating power of music, a universal language that transcends boundaries and brings us closer to our roots. Our organization serves as a beacon for those seeking to explore, express, and immerse themselves in the cultural identity of Eastern India."}</p><br/>
-                            <p>{"We organize a variety of activities aimed at bridging generations and cultivating shared experiences. From classical music concerts and folk dance workshops to culinary feasts and storytelling sessions, our events celebrate the traditions that echo through time. Tarang also hosts cultural festivals, spotlighting the richness of Eastern Indian arts and providing members with opportunities to engage, learn, and contribute to our vibrant community."}</p><br/>
-                            <p>{"Education is pivotal in our journey. Tarang offers classes and seminars on the history, philosophy, and practice of Eastern Indian music and arts. Catering to all skill levels, these educational initiatives encourage participants to delve into the depths of our heritage and foster a deeper understanding and appreciation of our culture."}</p><br/>
-                            <p>{"Tarang is more than just an organization – it's a community of belonging. Here, members find support, inspiration, and camaraderie. We warmly welcome individuals of Eastern Indian descent and those who wish to explore and experience the wonders of our culture. Join us as we embark on this exciting journey of cultural discovery and celebration. Let's unite in keeping the melody of our shared heritage vibrant and resonant for generations to come."}</p><br/>
+                            <p>{"Welcome to Tarang, a dynamic and inclusive community dedicated to celebrating the rich cultural heritage of the Indian subcontinent. Our mission at Tarang, founded in 2023, is to culturally enrich the lives of the diaspora through intimate storytelling about the shared culture, and fostering a sense of community and connection through the enchanting realms of performing arts and tradition."}</p><br/>
+                            <p>{"At Tarang, we recognize the rich heritage of the Indian subcontinent, characterized by its diverse customs, literature, culture, and art forms."}</p><br/>
+                            <p>{"Central to our ethos is the captivating power of storytelling through performance arts, an universal language that transcends boundaries and brings us closer to better understanding the shared history. For example, Persian was an official language of the-then India for over 600 years which left an indelible impact on generations of scholars and writers in that region. Similarly, over millennia numerous scholars, saints, kings, and sultans in India helped shape extensively the history, culture, and traditions of its neighbors in innumerable ways. These fascinating stories are often wrapped inside college textbooks, conference proceedings, academic journals, and archived media records, and therefore inaccessible to the broader public. Tarang aims to highlight these less noticed but culturally important aspects of shared history in its programs and bring them alive for the audience through well-crafted storytelling that would appeal to all curious minds."}</p><br/>
+                            <p>{"Our organization intends to serve as a beacon for those seeking to explore, express, and immerse themselves in this shared cultural history."}</p><br/>
+                            <p>{"We aim to organize cultural events every year in the Greater Washington DC Metro Area and promote local talents from the diaspora. These showcase events will not only cultivate shared experiences and traditions that echo through time but also help raise funds for local charities."}</p><br/>
+                            <p>{"In lieu of purchasing tickets to a Tarang event, the attendees would be expected to contribute directly to designated charities announced on the Tarang website. 100% of patrons’ contributions would therefore go to charities pre- selected and vetted by the Tarang team prior to each event."}</p><br/>
+                            <p>{"Over time, Tarang will aim to provide members with opportunities to engage, learn, and contribute to the vibrant community. Spreading awareness and facilitating deeper understanding of shared cultural history is pivotal to our journey."}</p><br/>
+                            <p>{"We warmly welcome interested individuals who wish to explore, perform, or experience the wonders of the Indic culture. Join us as we embark on this exciting journey of cultural discovery and celebration. Let's unite in keeping the melody of the shared heritage vibrant and resonant for generations to come."}</p><br/>
                             <p>{"Together at Tarang, we are not just preserving traditions; we are creating a legacy."}</p>
                         </div>
                     </div>
-                </div>
+                </div><br/><br/>
             </div>
         }
     }

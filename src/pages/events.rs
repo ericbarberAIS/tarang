@@ -113,7 +113,7 @@ fn load_default_event_data() -> Result<EventListingElement, Box<dyn std::error::
 fn default_event() -> EventListingElement {
     EventListingElement {
         id: 0, // Assuming an ID of 0 (or another placeholder value) for the default event
-        title: "No Events Scheduled".to_string(),
+        title: "To be Announced".to_string(),
         hero_image_url: "../../static/events/defaults/no_events_scheduled.webp".to_string(),
         time: Utc::now(), // Placeholder string, adjust according to the actual type you're using
         status: "inactive".to_string(),
