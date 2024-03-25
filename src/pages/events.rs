@@ -25,6 +25,32 @@ struct EventListingProps {
     event: EventListingElement,
 }
 
+#[function_component(EventComponentTile)]
+fn event_component(props: &EventListingProps) -> Html {
+    let event = &props.event;
+    let event_id = event.id.clone();
+
+    html! {
+        <div class="box" >
+            // Display the hero image if the URL is not empty
+            if !event.hero_image_url.is_empty() {
+                <figure class="image">
+                    <img src={event.hero_image_url.clone()} alt={format!("Image for {}", &event.title)} />
+                </figure>
+            }
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <h3>
+                            { &event.title }
+                        </h3>
+                    </div>
+                </div>
+            </article>
+        </div>
+    }
+}
+
 #[function_component(EventComponent)]
 fn event_component(props: &EventListingProps) -> Html {
     let event = &props.event;
@@ -153,7 +179,7 @@ pub fn event_listing() -> Html {
                 if upcoming_events.is_empty() {
                     <div class="columns is-multiline">
                         <div class="column is-one-third">
-                            <EventComponent event={event_to_display} />
+                            <EventComponentTile event={event_to_display} />
                         </div>
                     </div>
                 } else {
