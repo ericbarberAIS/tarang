@@ -46,7 +46,7 @@ impl Component for Contact {
 
                 <div class="tile is-child hero">
                     <div class="hero-body container pb-0">
-                        <h1 class="title is-1">{ "Contact Us" }</h1>
+                        <h1 class="title is-1 has-text-primary">{ "Contact Us" }</h1>
                     </div>
                 </div>
 
@@ -57,8 +57,12 @@ impl Component for Contact {
                         //     <p>{"+123 456 7890"}</p> // Replace with your actual phone number
                         // </div>
                         <div>
-                            <h3 class="contact-heading">{"Email"}</h3>
-                            <p>{"info@tarang.org"}</p> // Replace with your actual email address
+                           <h2>{"Please send us an email if you wish to get in touch with us, at the following address."}</h2>
+                            <br/>
+                            <span>
+                                <h3 class="contact-heading">{"Email : Tarangdc@gmail.com"}</h3>
+                                // <p class="has-text-info">{"Tarangedc@gmail.com"}</p> // Replace with your actual email Address
+                            </span>
                         </div>
                         // <div>
                         //     <h3 class="contact-heading">{"Address"}</h3>
