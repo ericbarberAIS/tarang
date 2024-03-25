@@ -7,7 +7,6 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use web_sys::console;
 use yew::prelude::*;
-use yew_router::components::Link;
 use yew_router::prelude::*;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
@@ -164,9 +163,9 @@ pub fn event_listing() -> Html {
         <>
 
         <nav class="panel">
-            <p class="panel-heading">
-                {"Quick Links"}
-            </p>
+            // <p class="panel-heading">
+            //     {"Quick Links"}
+            // </p>
             <div class="panel-block">
                 <div class="buttons has-addons">
                     <AnchorLink class="button is-small is-link is-rounded mr-1" target="upcoming-events" label="Upcoming Events" />
@@ -175,7 +174,7 @@ pub fn event_listing() -> Html {
             </div>
         </nav>
             <section class="section" id="upcoming-events">
-                <h1 class="title">{"Upcoming Events"}</h1>
+                <h1 class="title has-text-primary">{"Upcoming Events"}</h1>
                 if upcoming_events.is_empty() {
                     <div class="columns is-multiline">
                         <div class="column is-one-third">
@@ -193,7 +192,7 @@ pub fn event_listing() -> Html {
                 }
             </section>
             <section class="section" id="past-events">
-                <h1 class="title">{"Past Events"}</h1>
+                <h1 class="title has-text-primary">{"Past Events"}</h1>
                 <div class="columns is-multiline">
                 { for past_events.iter().map(|&event| html! {
                     <div class="column is-one-third">
