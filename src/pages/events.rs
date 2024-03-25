@@ -1,18 +1,23 @@
 use crate::components::anchor_link::AnchorLink;
-use chrono::serde::ts_seconds;
-use chrono::{DateTime, Utc};
+use crate::router::Route;
+
+use chrono::serde::ts_milliseconds;
+use chrono::{DateTime, TimeZone, Utc};
 use serde::{Deserialize, Serialize};
-use serde_json::to_string;
-use web_sys::{console, window};
+use serde_json::Value;
+use web_sys::console;
 use yew::prelude::*;
+use yew_router::components::Link;
+use yew_router::prelude::*;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 struct EventListingElement {
+    id: u64,
     title: String,
     hero_image_url: String,
-    #[serde(with = "ts_seconds")]
+    #[serde(with = "ts_milliseconds")]
     time: DateTime<Utc>,
-    id: u32,
+    status: String,
 }
 
 #[derive(Properties, PartialEq)]
@@ -23,23 +28,13 @@ struct EventListingProps {
 #[function_component(EventComponent)]
 fn event_component(props: &EventListingProps) -> Html {
     let event = &props.event;
+    let event_id = event.id.clone();
 
-    // Create an `onclick` callback that navigates to the event page
-    let handle_click = {
-        let event_id = event.id;
-        Callback::from(move |_| {
-            if let Some(window) = window() {
-                let url = format!("/events/{}", event_id);
-                window
-                    .location()
-                    .set_href(&url)
-                    .expect("failed to redirect");
-            }
-        })
-    };
+    let navigator = use_navigator().unwrap();
+    let onclick = Callback::from(move |_| navigator.push(&Route::Event { id: event_id }));
 
     html! {
-        <div class="box" onclick={handle_click}>
+        <div class="box" onclick={onclick}>
             // Display the hero image if the URL is not empty
             if !event.hero_image_url.is_empty() {
                 <figure class="image">
@@ -49,9 +44,9 @@ fn event_component(props: &EventListingProps) -> Html {
             <article class="media">
                 <div class="media-content">
                     <div class="content">
-                        <h2>
-                            <strong>{ &event.title }</strong>
-                        </h2>
+                        <h3>
+                            { &event.title }
+                        </h3>
                     </div>
                 </div>
             </article>
@@ -59,36 +54,86 @@ fn event_component(props: &EventListingProps) -> Html {
     }
 }
 
+fn load_default_event_data() -> Result<EventListingElement, Box<dyn std::error::Error>> {
+    let data_str = include_str!("../../static/events/defaults/list.json");
+    let v: Value = serde_json::from_str(data_str)?;
+
+    // Now extract the data manually from the Value `v`
+    let id = v["id"].as_u64().ok_or("id should be a u64")? as u64;
+    let title = v["title"]
+        .as_str()
+        .ok_or("title should be a string")?
+        .to_owned();
+    let hero_image_url = v["hero_image_url"]
+        .as_str()
+        .ok_or("hero_image_url should be a string")?
+        .to_owned();
+    let time_str = v["time"].as_str().ok_or("time should be a string")?;
+    let time_millis = time_str.parse::<i64>()?;
+    let time = Utc.timestamp_millis(time_millis);
+    let status = v["inactive"]
+        .as_str()
+        .ok_or("title should be a string")?
+        .to_owned();
+    Ok(EventListingElement {
+        id,
+        title,
+        hero_image_url,
+        time,
+        status,
+    })
+}
+
+fn default_event() -> EventListingElement {
+    EventListingElement {
+        id: 0, // Assuming an ID of 0 (or another placeholder value) for the default event
+        title: "No Events Scheduled".to_string(),
+        hero_image_url: "../../static/events/defaults/no_events_scheduled.webp".to_string(),
+        time: Utc::now(), // Placeholder string, adjust according to the actual type you're using
+        status: "inactive".to_string(),
+    }
+}
+// Function to load the main events data, handling errors gracefully
+fn load_event_data() -> Vec<EventListingElement> {
+    let data_str = include_str!("../../static/events/list.json");
+    match serde_json::from_str::<Vec<EventListingElement>>(data_str) {
+        Ok(events) => events,
+        Err(e) => {
+            console::log_1(&format!("Error loading events data: {}", e).into());
+            Vec::new() // Return an empty vector if there's an error
+        }
+    }
+}
+
 #[function_component(EventListing)]
 pub fn event_listing() -> Html {
-    // Temporarily using static data
-    // let static_events = vec![EventListingElement {
-    //     title: "NVBA Celebrates Kobi Pronam".to_string(),
-    //     hero_image_url: "/static/events/imports/jpg/image_1.jpg".to_string(),
-    //     // Assuming the time is in milliseconds since the Unix epoch
-    //     time: Utc.timestamp_millis(1686423600000),
-    // }];
-    //
-    // // Convert static data to a state to mimic the original structure
+    // Convert static data to a state to mimic the original structure
     // let events = use_state(|| static_events);
+    // Define the default_event function to return a default EventListingElement
+    let static_future_event = load_default_event_data();
 
-    let events = use_state(|| {
-        // Load and parse the JSON data at compile time
-        let data_str = include_str!("../../static/events/list.json");
-        console::log_1(&format!("Loaded data: {}", data_str).into());
-        serde_json::from_str::<Vec<EventListingElement>>(data_str).unwrap_or_else(|_| Vec::new())
-    });
+    // Check if loading the default event was successful.
+    // We use 'match' to handle both Ok and Err cases.
+    let event_to_display = match static_future_event {
+        Ok(event) => event.clone(), // Clone the event if Ok
+        Err(_error) => {
+            // Handle the error case. For example, you could log the error or
+            // create a fallback `EventListingElement`.
+            // This is where you would call `default_event()` or similar if you have it.
+            default_event()
+        }
+    };
 
-    // Serialize and log the events data for debugging
-    if let Ok(events_json) = to_string(&*events) {
-        console::log_1(&format!("Event data: {}", events_json).into());
-    } else {
-        console::log_1(&"Failed to serialize events".into());
-    }
+    let events = use_state(|| load_event_data());
+    // Attempt to load event data
+    let events_result = load_event_data();
 
     // Separate into upcoming and past events
     let (upcoming_events, past_events): (Vec<&EventListingElement>, Vec<&EventListingElement>) =
-        events.iter().partition(|e| e.time > Utc::now());
+        events_result
+            .iter()
+            .filter(|e| e.status == "active")
+            .partition(|e| e.time > Utc::now());
 
     html! {
         <>
@@ -106,19 +151,27 @@ pub fn event_listing() -> Html {
         </nav>
             <section class="section" id="upcoming-events">
                 <h1 class="title">{"Upcoming Events"}</h1>
-                <div class="columns is-multiline">
-                { for upcoming_events.iter().map(|&event| html! {
-                    <div class="column is-half">
-                        <EventComponent event={event.clone()} />
+                if upcoming_events.is_empty() {
+                    <div class="columns is-multiline">
+                        <div class="column is-one-third">
+                            <EventComponent event={event_to_display} />
+                        </div>
                     </div>
-                }) }
-                </div>
+                } else {
+                    <div class="columns is-multiline">
+                        { for upcoming_events.iter().map(|&event| html! {
+                            <div class="column is-one-third">
+                                <EventComponent event={event.clone()} />
+                            </div>
+                        }) }
+                    </div>
+                }
             </section>
             <section class="section" id="past-events">
                 <h1 class="title">{"Past Events"}</h1>
                 <div class="columns is-multiline">
                 { for past_events.iter().map(|&event| html! {
-                    <div class="column is-half">
+                    <div class="column is-one-third">
                         <EventComponent event={event.clone()} />
                     </div>
                 }) }
