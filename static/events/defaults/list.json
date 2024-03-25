@@ -2,5 +2,6 @@
   "id": 0,
   "title": "No Events Scheduled For Now: Check Back Later",
   "hero_image_url": "/static/events/default/no_events_scheduled.webp",
-  "time": 1986423600
+  "time": 1986423600,
+  "status":"active"
 }]
