@@ -10,6 +10,7 @@ pub struct Props {
 #[function_component(Event)]
 pub fn event(props: &Props) -> Html {
     let images = vec![
+        // "/static/events/imports/jpg/event_description.jpg",
         "/static/events/imports/jpg/image_1.jpg",
         "/static/events/imports/jpg/image_2.jpg",
         "/static/events/imports/jpg/image_3.jpg",
@@ -19,6 +20,8 @@ pub fn event(props: &Props) -> Html {
         "/static/events/imports/jpg/image_7.jpg",
         "/static/events/imports/jpg/image_8.jpg",
     ];
+
+    let details_image = vec!["/static/events/imports/jpg/event_description.jpg"];
 
     html! {
         <div class="section container">
@@ -52,6 +55,13 @@ pub fn event(props: &Props) -> Html {
                         </figure>
                     </div>
                 </div>
+                        <div class="tile is-parent">
+                        <figure class="tile is-child image">
+                            <Carousel images={details_image} />
+                            // <img alt="The event's theme picture." src={event.image_url.clone()} />
+                        </figure>
+                    </div>
+
                     <div class="tile is-ancestor">
                         <div class="tile is-parent">
                             <article class="tile is-child notification is-white">

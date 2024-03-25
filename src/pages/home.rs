@@ -16,7 +16,8 @@ impl Component for Home {
                     <div class="hero-body container pb-0">
                         <h1 class="title is-1 has-text-primary">{ "Tarang" }</h1>
                         <div class="content box">
-                            <p class="subtitle">{"Tarang welcomes all without regard to racial, ethnic, regional, religious, political, or socio-economic background. Its mission seeks:"}</p>
+                            <p class="subtitle">{"Tarang welcomes all without regard to racial, ethnic, regional, religious, political, or socio-economic background."}</p>
+                            <p class="subtitle">{"Its mission seeks:"}</p>
                             <ul>
                                 <li>{"To make a positive difference in the community by hosting informative cultural programs, promoting local talents, and supporting local charities."}</li>
                                 <li>{"To foster community spirit by creating a place for like-minded cultural enthusiasts to come together."}</li>
