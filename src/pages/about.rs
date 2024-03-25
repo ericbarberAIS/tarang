@@ -29,7 +29,7 @@ impl Component for AboutUs {
 
                          <div id="about-us" class="hero-body">
                               <p>
-                              <span class="has-text-primary">{"Welcome" }</span>
+                              <span class="has-text-primary">{"Welcome " }</span>
                               <span class="has-text-primary">{"to "}</span>
                               <span class="has-text-primary">{"Tarang,"}</span>
                             {" a dynamic and inclusive community dedicated to celebrating the rich cultural heritage of the Indian subcontinent. Our mission at Tarang, founded in 2023, is to culturally enrich the lives of the diaspora through intimate storytelling about the shared culture, and fostering a sense of community and connection through the enchanting realms of performing arts and tradition."}</p><br/>
