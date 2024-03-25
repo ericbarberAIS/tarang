@@ -50,7 +50,7 @@ impl Home {
                 <div class="tile is-parent">
                     <div class="tile is-child box">
                         <p class="title has-text-primary">{"What is Tarang?"}</p>
-                        <p class="subtitle">{"Discover the harmony of music!"}</p>
+                        // <p class="subtitle">{"Discover the harmony of music!"}</p>
 
                         <div class="content">
                             <p>
