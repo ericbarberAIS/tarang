@@ -124,9 +124,8 @@ pub fn event_listing() -> Html {
         }
     };
 
-    let events = use_state(|| load_event_data());
     // Attempt to load event data
-    let events_result = load_event_data();
+    let events_result = use_state(|| load_event_data());
 
     // Separate into upcoming and past events
     let (upcoming_events, past_events): (Vec<&EventListingElement>, Vec<&EventListingElement>) =
