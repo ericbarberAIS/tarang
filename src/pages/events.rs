@@ -27,7 +27,7 @@ struct EventListingProps {
 #[function_component(EventComponentTile)]
 fn event_component(props: &EventListingProps) -> Html {
     let event = &props.event;
-    let event_id = event.id.clone();
+    let _event_id = event.id.clone();
 
     html! {
         <div class="box" >
@@ -79,6 +79,14 @@ fn event_component(props: &EventListingProps) -> Html {
     }
 }
 
+fn get_datetime_from_millis(time_millis: i64) -> Result<DateTime<Utc>, String> {
+    match Utc.timestamp_millis_opt(time_millis) {
+        chrono::LocalResult::Single(dt) => Ok(dt),
+        chrono::LocalResult::Ambiguous(_, _) => Err("Ambiguous datetime".into()),
+        chrono::LocalResult::None => Err("Invalid datetime".into()),
+    }
+}
+
 fn load_default_event_data() -> Result<EventListingElement, Box<dyn std::error::Error>> {
     let data_str = include_str!("../../static/events/defaults/list.json");
     let v: Value = serde_json::from_str(data_str)?;
@@ -95,7 +103,7 @@ fn load_default_event_data() -> Result<EventListingElement, Box<dyn std::error::
         .to_owned();
     let time_str = v["time"].as_str().ok_or("time should be a string")?;
     let time_millis = time_str.parse::<i64>()?;
-    let time = Utc.timestamp_millis(time_millis);
+    let time = get_datetime_from_millis(time_millis)?;
     let status = v["inactive"]
         .as_str()
         .ok_or("title should be a string")?
@@ -112,7 +120,7 @@ fn load_default_event_data() -> Result<EventListingElement, Box<dyn std::error::
 fn default_event() -> EventListingElement {
     EventListingElement {
         id: 0, // Assuming an ID of 0 (or another placeholder value) for the default event
-        title: "To be Announced".to_string(),
+        title: "To be announced".to_string(),
         hero_image_url: "../../static/events/defaults/no_events_scheduled.webp".to_string(),
         time: Utc::now(), // Placeholder string, adjust according to the actual type you're using
         status: "inactive".to_string(),
